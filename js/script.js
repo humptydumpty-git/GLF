@@ -13,18 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormValidation();
     initRandomGallery();
     initHeroImageRotation();
-    initLazyLoading();
 });
-
-/**
- * Lazy Loading - Add loading="lazy" to all images except hero image
- */
-function initLazyLoading() {
-    const images = document.querySelectorAll('img:not([loading="lazy"]):not(.hero-image img)');
-    images.forEach(img => {
-        img.setAttribute('loading', 'lazy');
-    });
-}
 
 /**
  * Navbar functionality
