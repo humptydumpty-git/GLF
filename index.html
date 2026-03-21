@@ -130,12 +130,12 @@
                 </div>
             </div>
             
-            <div class="slideshow-nav" id="slideshowNav">
-                <span class="slide-dot active" data-index="0"></span>
-                <span class="slide-dot" data-index="1"></span>
-                <span class="slide-dot" data-index="2"></span>
-                <span class="slide-dot" data-index="3"></span>
-                <span class="slide-dot" data-index="4"></span>
+            <div class="slideshow-nav" id="slideshowNav" role="group" aria-label="Slideshow slides">
+                <button type="button" class="slide-dot active" data-index="0" role="button" aria-pressed="true" aria-label="Show slide 1 of 5"></button>
+                <button type="button" class="slide-dot" data-index="1" role="button" aria-pressed="false" aria-label="Show slide 2 of 5"></button>
+                <button type="button" class="slide-dot" data-index="2" role="button" aria-pressed="false" aria-label="Show slide 3 of 5"></button>
+                <button type="button" class="slide-dot" data-index="3" role="button" aria-pressed="false" aria-label="Show slide 4 of 5"></button>
+                <button type="button" class="slide-dot" data-index="4" role="button" aria-pressed="false" aria-label="Show slide 5 of 5"></button>
             </div>
         </div>
     </section>
@@ -153,12 +153,12 @@
                 <!-- Main image display -->
             </div>
             <div class="gallery-controls">
-                <button class="gallery-btn" onclick="prevGallerySlide()">
-                    <i class="fas fa-chevron-left"></i>
+                <button type="button" class="gallery-btn" onclick="prevGallerySlide()" aria-label="Previous gallery image">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
                 </button>
                 <div class="gallery-counter" id="galleryCounter">1 / 20</div>
-                <button class="gallery-btn" onclick="nextGallerySlide()">
-                    <i class="fas fa-chevron-right"></i>
+                <button type="button" class="gallery-btn" onclick="nextGallerySlide()" aria-label="Next gallery image">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="gallery-title" id="galleryTitle"></div>
@@ -172,19 +172,19 @@
         </div>
         
         <div style="text-align: center; margin-top: 2rem;">
-            <button class="btn btn-secondary" onclick="refreshGallery()">
-                <i class="fas fa-sync-alt"></i> Load New Photos
+            <button type="button" class="btn btn-secondary" onclick="refreshGallery()" aria-label="Load new random photos">
+                <i class="fas fa-sync-alt" aria-hidden="true"></i> Load New Photos
             </button>
         </div>
     </section>
 
     <!-- Lightbox Modal -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img class="lightbox-content" id="lightboxImage">
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo" aria-hidden="true">
+        <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close photo">&times;</button>
+        <img class="lightbox-content" id="lightboxImage" alt="">
         <div class="lightbox-caption" id="lightboxCaption"></div>
-        <a class="lightbox-prev" onclick="prevLightboxImage()">&#10094;</a>
-        <a class="lightbox-next" onclick="nextLightboxImage()">&#10095;</a>
+        <button type="button" class="lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#10094;</button>
+        <button type="button" class="lightbox-next" id="lightboxNext" aria-label="Next photo">&#10095;</button>
     </div>
 
     <!-- Featured Campaigns Section -->
@@ -376,6 +376,13 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Gamers Lounge Foundation. All rights reserved.</p>
                 <p>Registered Charity Organization</p>
+                <p class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span class="footer-legal-sep" aria-hidden="true">·</span>
+                    <a href="terms.html">Terms of Use</a>
+                    <span class="footer-legal-sep" aria-hidden="true">·</span>
+                    <a href="cookies.html">Cookie Notice</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -389,7 +396,8 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- JavaScript -->
+    <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+    <script src="js/formbutton-init.js" defer></script>
     <script src="js/script.js"></script>
 </body>
 </html>

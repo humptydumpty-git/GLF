@@ -115,12 +115,14 @@
                     </div>
                 </div>
                 
-                <!-- Contact Form -->
+                <!-- Contact Form (Formspree → gamersloungefoundation@gmail.com) -->
                 <div class="contact-form-wrapper">
                     <h3>Send Us a Message</h3>
                     
-                    <!-- Simple Mailto Form -->
-                    <form id="contactForm" class="contact-form" onsubmit="sendEmail(event)">
+                    <form id="contactForm" class="contact-form" action="https://formspree.io/f/xvzwyywl" method="POST">
+                        <input type="hidden" name="_subject" value="GLF website contact form">
+                        <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
@@ -157,15 +159,17 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i> Send Message
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
                         </button>
                     </form>
                     
-                    <!-- Info Message -->
-                    <div style="text-align: center; padding: 1.5rem; background: var(--off-white); border-radius: var(--radius-md); margin-top: 1rem;">
-                        <i class="fas fa-info-circle" style="color: var(--primary-blue); margin-right: 0.5rem;"></i>
-                        <span style="color: var(--text-secondary);">Clicking send will open your email client with a pre-filled message to <strong>gamersloungefoundation@gmail.com</strong></span>
+                    <div id="formSuccess" class="form-success" style="display: none;" role="status" aria-live="polite" tabindex="-1">
+                        <p><i class="fas fa-check-circle" style="color: var(--primary-green);" aria-hidden="true"></i> Thank you! Your message has been sent. We will respond to you as soon as we can.</p>
                     </div>
+                    
+                    <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        Submissions are delivered securely via Formspree to our team inbox.
+                    </p>
                 </div>
             </div>
         </div>
@@ -310,6 +314,13 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Gamers Lounge Foundation. All rights reserved.</p>
                 <p>Registered Charity Organization</p>
+                <p class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span class="footer-legal-sep" aria-hidden="true">·</span>
+                    <a href="terms.html">Terms of Use</a>
+                    <span class="footer-legal-sep" aria-hidden="true">·</span>
+                    <a href="cookies.html">Cookie Notice</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -323,7 +334,8 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- JavaScript -->
+    <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+    <script src="js/formbutton-init.js" defer></script>
     <script src="js/script.js"></script>
 </body>
 </html>

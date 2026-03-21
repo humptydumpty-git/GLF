@@ -632,6 +632,12 @@ ul {
     background: var(--light-gray);
     cursor: pointer;
     transition: var(--transition-normal);
+    border: none;
+    padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .slide-dot.active {
@@ -963,6 +969,12 @@ ul {
     cursor: pointer;
     transition: var(--transition-normal);
     z-index: 10000;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
 }
 
 .lightbox-close:hover {
@@ -985,6 +997,10 @@ ul {
     border-radius: 0 3px 3px 0;
     user-select: none;
     background: rgba(0, 0, 0, 0.3);
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    font-family: inherit;
 }
 
 .lightbox-next {
@@ -1627,6 +1643,10 @@ ul {
     margin-bottom: var(--spacing-lg);
 }
 
+.contact-form {
+    position: relative;
+}
+
 .contact-form .form-group {
     margin-bottom: var(--spacing-md);
 }
@@ -1634,6 +1654,27 @@ ul {
 .contact-form textarea {
     min-height: 150px;
     resize: vertical;
+}
+
+.form-success {
+    padding: var(--spacing-lg);
+    background: var(--off-white);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-green);
+    color: var(--text-primary);
+}
+
+.form-success p {
+    margin-bottom: 0;
+    color: var(--text-primary);
+}
+
+.form-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 /* FAQ Section */
@@ -1745,13 +1786,50 @@ ul {
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--secondary-gray);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .footer-bottom p {
     color: var(--light-gray);
     margin-bottom: 0;
+}
+
+.footer-legal {
+    width: 100%;
+    text-align: center;
+    margin-top: var(--spacing-xs);
+    margin-bottom: 0;
+}
+
+.footer-legal a {
+    color: var(--light-gray);
+}
+
+.footer-legal a:hover {
+    color: var(--primary-green);
+}
+
+.footer-legal-sep {
+    margin: 0 0.35rem;
+    color: var(--secondary-gray);
+}
+
+.legal-content {
+    max-width: 800px;
+}
+
+.legal-content .legal-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.legal-content .legal-list li {
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-secondary);
 }
 
 .footer-social {

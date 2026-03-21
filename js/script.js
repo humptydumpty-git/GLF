@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initFormValidation();
     initRandomGallery();
+    initLightboxControls();
 });
 
 /**
@@ -101,6 +102,7 @@ function initSlideshow() {
             } else {
                 dot.classList.remove('active');
             }
+            dot.setAttribute('aria-pressed', i === currentSlide ? 'true' : 'false');
         });
     }
     
@@ -270,35 +272,6 @@ function initSmoothScroll() {
 }
 
 /**
- * Simple Mailto Form Handler
- */
-function sendEmail(event) {
-    event.preventDefault();
-    
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('contactEmail').value;
-    const phone = document.getElementById('phone').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    // Create email subject
-    const emailSubject = encodeURIComponent('GLF Website: ' + subject);
-    
-    // Create email body with all form information
-    const emailBody = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Phone: ' + (phone || 'Not provided') + '\n' +
-        'Subject: ' + subject + '\n\n' +
-        'Message:\n' + message
-    );
-    
-    // Open email client with pre-filled content
-    window.location.href = 'mailto:gamersloungefoundation@gmail.com?subject=' + emailSubject + '&body=' + emailBody;
-}
-
-/**
  * Form validation and handling
  */
 function initFormValidation() {
@@ -333,6 +306,8 @@ function initFormValidation() {
                         const formSuccess = document.getElementById('formSuccess');
                         if (formSuccess) {
                             formSuccess.style.display = 'block';
+                            formSuccess.setAttribute('tabindex', '-1');
+                            formSuccess.focus();
                         }
                     } else {
                         alert('There was a problem sending your message. Please try again.');
@@ -456,6 +431,7 @@ function validateField(field) {
 let galleryImages = [];
 let currentSlideIndex = 0;
 let galleryInterval = null;
+let lightboxLastFocus = null;
 
 // Make functions globally available
 window.refreshGallery = function() {
@@ -476,39 +452,66 @@ window.openLightbox = function(index) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImage');
     const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeBtn = document.getElementById('lightboxClose');
+    if (!lightbox || !lightboxImg || !lightboxCaption || galleryImages.length === 0) return;
     
+    lightboxLastFocus = document.activeElement;
     currentSlideIndex = index;
     lightboxImg.src = galleryImages[index].src;
+    lightboxImg.alt = galleryImages[index].title + ': ' + galleryImages[index].desc;
     lightboxCaption.textContent = galleryImages[index].title + ' - ' + galleryImages[index].desc;
     lightbox.style.display = 'block';
+    lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     
-    // Stop slideshow when lightbox is open
     stopGallerySlideshow();
+    
+    if (closeBtn && typeof closeBtn.focus === 'function') {
+        closeBtn.focus();
+    }
 };
 
 window.closeLightbox = function() {
-    document.getElementById('lightbox').style.display = 'none';
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+    lightbox.style.display = 'none';
+    lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'auto';
-    // Resume slideshow
     startGallerySlideshow();
+    if (lightboxLastFocus && typeof lightboxLastFocus.focus === 'function') {
+        lightboxLastFocus.focus();
+    }
+    lightboxLastFocus = null;
 };
 
 window.prevLightboxImage = function() {
+    if (galleryImages.length === 0) return;
     currentSlideIndex = (currentSlideIndex - 1 + galleryImages.length) % galleryImages.length;
     const lightboxImg = document.getElementById('lightboxImage');
     const lightboxCaption = document.getElementById('lightboxCaption');
     lightboxImg.src = galleryImages[currentSlideIndex].src;
+    lightboxImg.alt = galleryImages[currentSlideIndex].title + ': ' + galleryImages[currentSlideIndex].desc;
     lightboxCaption.textContent = galleryImages[currentSlideIndex].title + ' - ' + galleryImages[currentSlideIndex].desc;
 };
 
 window.nextLightboxImage = function() {
+    if (galleryImages.length === 0) return;
     currentSlideIndex = (currentSlideIndex + 1) % galleryImages.length;
     const lightboxImg = document.getElementById('lightboxImage');
     const lightboxCaption = document.getElementById('lightboxCaption');
     lightboxImg.src = galleryImages[currentSlideIndex].src;
+    lightboxImg.alt = galleryImages[currentSlideIndex].title + ': ' + galleryImages[currentSlideIndex].desc;
     lightboxCaption.textContent = galleryImages[currentSlideIndex].title + ' - ' + galleryImages[currentSlideIndex].desc;
 };
+
+function initLightboxControls() {
+    const closeBtn = document.getElementById('lightboxClose');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (prevBtn) prevBtn.addEventListener('click', prevLightboxImage);
+    if (nextBtn) nextBtn.addEventListener('click', nextLightboxImage);
+}
 
 function initRandomGallery() {
     loadRandomGallery();

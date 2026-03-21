@@ -63,21 +63,6 @@
     <!-- Donate Section -->
     <section class="donate-section">
         <div class="donate-container">
-            <!-- Donation Type Selection -->
-            <div class="donate-options">
-                <div class="donate-type-card active" data-type="one-time">
-                    <i class="fas fa-gift" style="font-size: 2rem; color: var(--primary-green); margin-bottom: 1rem;"></i>
-                    <h3>One-Time Donation</h3>
-                    <p>Make a single contribution to support our immediate needs</p>
-                </div>
-                
-                <div class="donate-type-card" data-type="recurring">
-                    <i class="fas fa-redo" style="font-size: 2rem; color: var(--primary-purple); margin-bottom: 1rem;"></i>
-                    <h3>Monthly Giving</h3>
-                    <p>Become a sustaining donor with recurring monthly support</p>
-                </div>
-            </div>
-            
             <!-- Donation Form -->
             <div class="donation-form">
                 <h3 style="text-align: center; margin-bottom: 1.5rem;">Select Donation Amount</h3>
@@ -147,9 +132,9 @@
                     </div>
                     
                     <div class="faq-item">
-                        <div class="faq-question">Can I make a recurring donation?</div>
+                        <div class="faq-question">Can I donate more than once?</div>
                         <div class="faq-answer">
-                            <p>Absolutely! You can choose "Monthly Giving" to set up automatic recurring donations. This provides stable funding for our ongoing programs.</p>
+                            <p>Yes. You can return to this page anytime to make another one-time donation. Your support each time helps us plan and deliver programs.</p>
                         </div>
                     </div>
                     
@@ -250,6 +235,13 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Gamers Lounge Foundation. All rights reserved.</p>
                 <p>Registered Charity Organization</p>
+                <p class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span class="footer-legal-sep" aria-hidden="true">·</span>
+                    <a href="terms.html">Terms of Use</a>
+                    <span class="footer-legal-sep" aria-hidden="true">·</span>
+                    <a href="cookies.html">Cookie Notice</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -263,14 +255,14 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- JavaScript -->
+    <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+    <script src="js/formbutton-init.js" defer></script>
     <script src="js/script.js"></script>
     
     <!-- Paystack Donation Script -->
     <script>
         // Donation amount state
         let selectedAmount = 200;
-        let donationType = 'one-time';
         
         // Amount button click handlers
         document.querySelectorAll('.amount-btn').forEach(btn => {
@@ -288,15 +280,6 @@
                 document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
                 selectedAmount = parseInt(this.value) || 0;
             }
-        });
-        
-        // Donation type selection
-        document.querySelectorAll('.donate-type-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.querySelectorAll('.donate-type-card').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-                donationType = this.dataset.type;
-            });
         });
         
         // Form submission with Paystack
@@ -321,8 +304,7 @@
                 ref: 'GLF-' + Math.random().toString(36).slice(2, 11),
                 metadata: {
                     firstName: firstName,
-                    phone: phone,
-                    donationType: donationType
+                    phone: phone
                 },
                 callback: function(response) {
                     // Payment successful
