@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCounters();
     initSmoothScroll();
     initFormValidation();
+    initRandomGallery();
 });
 
 /**
@@ -418,6 +419,151 @@ function validateField(field) {
     }
     
     return isValid;
+}
+
+/**
+ * Random Gallery - Display 5 random images from Asset folder
+ */
+function initRandomGallery() {
+    loadRandomGallery();
+}
+
+// Make refreshGallery available globally for the button onclick
+window.refreshGallery = function() {
+    loadRandomGallery();
+};
+
+function loadRandomGallery() {
+    const galleryContainer = document.getElementById('randomGallery');
+    if (!galleryContainer) return;
+    
+    // List of all available images in the Asset folder
+    const allImages = [
+        { src: 'Asset/IMG_7102.jpg', title: 'Community Outreach', desc: 'Building stronger communities together' },
+        { src: 'Asset/IMG_7103.jpg', title: 'Education Initiative', desc: 'Empowering through learning' },
+        { src: 'Asset/IMG_7104.jpg', title: 'Healthcare Program', desc: 'Medical support for those in need' },
+        { src: 'Asset/IMG_7105.jpg', title: 'Volunteer Work', desc: 'Our dedicated team in action' },
+        { src: 'Asset/IMG_7108.jpg', title: 'Disaster Relief', desc: 'Emergency response efforts' },
+        { src: 'Asset/IMG_7109.jpg', title: 'Youth Programs', desc: 'Inspiring the next generation' },
+        { src: 'Asset/IMG_7111.jpg', title: 'Community Building', desc: 'Creating lasting change' },
+        { src: 'Asset/IMG_7112.jpg', title: 'Education Support', desc: 'School supplies and resources' },
+        { src: 'Asset/IMG_7113.jpg', title: 'Healthcare Access', desc: 'Medical care for all' },
+        { src: 'Asset/IMG_7115.jpg', title: 'Volunteer Team', desc: 'Making a difference daily' },
+        { src: 'Asset/IMG_7116.jpg', title: 'Charity Work', desc: 'Giving back to communities' },
+        { src: 'Asset/IMG_7117.jpg', title: 'Outreach Program', desc: 'Reaching those in need' },
+        { src: 'Asset/IMG_7119.jpg', title: 'Local Impact', desc: 'Small actions, big changes' },
+        { src: 'Asset/IMG_7120.jpg', title: 'Community Event', desc: 'Bringing people together' },
+        { src: 'Asset/IMG_7122.jpg', title: 'Education Drive', desc: 'Books and materials for students' },
+        { src: 'Asset/IMG_7123.jpg', title: 'Medical Camp', desc: 'Free health checkups' },
+        { src: 'Asset/IMG_7125.jpg', title: 'Food Distribution', desc: 'Fighting hunger' },
+        { src: 'Asset/IMG_7126.jpg', title: 'School Support', desc: 'Educational resources' },
+        { src: 'Asset/IMG_7128.jpg', title: 'Health Initiative', desc: 'Wellness programs' },
+        { src: 'Asset/IMG_7131.jpg', title: 'Youth Education', desc: 'Learning opportunities' },
+        { src: 'Asset/IMG_7133.jpg', title: 'Community Aid', desc: 'Support for families' },
+        { src: 'Asset/IMG_7136.jpg', title: 'Outreach Activities', desc: 'Extending our reach' },
+        { src: 'Asset/IMG_7137.jpg', title: 'Volunteer Efforts', desc: 'Hands that help' },
+        { src: 'Asset/IMG_7138.jpg', title: 'Education Programs', desc: 'Knowledge for all' },
+        { src: 'Asset/IMG_7140.jpg', title: 'Healthcare Outreach', desc: 'Medical support' },
+        { src: 'Asset/IMG_7141.jpg', title: 'Charity Mission', desc: 'Making impact' },
+        { src: 'Asset/IMG_7142.jpg', title: 'Community Service', desc: 'Serving with love' },
+        { src: 'Asset/IMG_7145.jpg', title: 'Education Drive', desc: 'Books for children' },
+        { src: 'Asset/IMG_7146.jpg', title: 'Relief Efforts', desc: 'Emergency assistance' },
+        { src: 'Asset/IMG_7148.jpg', title: 'Youth Support', desc: 'Future leaders' },
+        { src: 'Asset/IMG_7150.jpg', title: 'Health Camp', desc: 'Medical services' },
+        { src: 'Asset/IMG_7155.jpg', title: 'Community Work', desc: 'Together we grow' },
+        { src: 'Asset/IMG_7156.jpg', title: 'Education Initiative', desc: 'Learning opportunities' },
+        { src: 'Asset/IMG_7161.jpg', title: 'Volunteer Work', desc: 'Dedication in action' },
+        { src: 'Asset/IMG_7162.jpg', title: 'Charity Program', desc: 'Giving hope' },
+        { src: 'Asset/IMG_7163.jpg', title: 'Outreach Program', desc: 'Reaching communities' },
+        { src: 'Asset/IMG_7173.jpg', title: 'Healthcare Mission', desc: 'Medical care access' },
+        { src: 'Asset/IMG_7176.jpg', title: 'Education Support', desc: 'Scholastic materials' },
+        { src: 'Asset/IMG_7178.jpg', title: 'Community Impact', desc: 'Changing lives' },
+        { src: 'Asset/IMG_7186.jpg', title: 'Disaster Relief', desc: 'Emergency response' },
+        { src: 'Asset/IMG_7188.jpg', title: 'Youth Programs', desc: 'Empowering youth' },
+        { src: 'Asset/IMG_7190.jpg', title: 'Health Services', desc: 'Medical outreach' },
+        { src: 'Asset/IMG_7191.jpg', title: 'Education Drive', desc: 'School support' },
+        { src: 'Asset/IMG_7195.jpg', title: 'Charity Work', desc: 'Humanitarian aid' },
+        { src: 'Asset/IMG_7197.jpg', title: 'Volunteer Service', desc: 'Community service' },
+        { src: 'Asset/IMG_7198.jpg', title: 'Outreach Activities', desc: 'Extending help' },
+        { src: 'Asset/IMG_7199.jpg', title: 'Healthcare Program', desc: 'Medical support' },
+        { src: 'Asset/IMG_7201.jpg', title: 'Education Initiative', desc: 'Learning resources' },
+        { src: 'Asset/IMG_7202.jpg', title: 'Community Building', desc: 'Together stronger' },
+        { src: 'Asset/IMG_7203.jpg', title: 'Relief Mission', desc: 'Disaster support' },
+        { src: 'Asset/IMG_7204.jpg', title: 'Youth Support', desc: 'Next generation' },
+        { src: 'Asset/IMG_7205.jpg', title: 'Health Camp', desc: 'Free screenings' },
+        { src: 'Asset/IMG_7206.jpg', title: 'Charity Event', desc: 'Fundraising activities' },
+        { src: 'Asset/IMG_7208.jpg', title: 'Volunteer Team', desc: 'Helping hands' },
+        { src: 'Asset/IMG_7210.jpg', title: 'Education Program', desc: 'Knowledge access' },
+        { src: 'Asset/IMG_7211.jpg', title: 'Community Aid', desc: 'Local support' },
+        { src: 'Asset/IMG_7212.jpg', title: 'Healthcare Outreach', desc: 'Medical missions' },
+        { src: 'Asset/IMG_7213.jpg', title: 'Disaster Response', desc: 'Emergency aid' },
+        { src: 'Asset/IMG_7214.jpg', title: 'Youth Education', desc: 'Learning programs' },
+        { src: 'Asset/IMG_7215.jpg', title: 'Charity Mission', desc: 'Giving back' },
+        { src: 'Asset/IMG_7216.jpg', title: 'Volunteer Work', desc: 'Service with love' },
+        { src: 'Asset/IMG_7220.jpg', title: 'Community Service', desc: 'Making impact' },
+        { src: 'Asset/IMG_7222.jpg', title: 'Education Support', desc: 'Student assistance' },
+        { src: 'Asset/IMG_7223.jpg', title: 'Healthcare Access', desc: 'Medical care' },
+        { src: 'Asset/IMG_7226.jpg', title: 'Outreach Program', desc: 'Community reach' },
+        { src: 'Asset/IMG_7229.jpg', title: 'Relief Efforts', desc: 'Aid distribution' },
+        { src: 'Asset/IMG_7230.jpg', title: 'Youth Programs', desc: 'Youth empowerment' },
+        { src: 'Asset/IMG_7231.jpg', title: 'Health Initiative', desc: 'Wellness support' },
+        { src: 'Asset/IMG_7232.jpg', title: 'Education Drive', desc: 'School supplies' },
+        { src: 'Asset/IMG_7233.jpg', title: 'Charity Work', desc: 'Humanitarian work' },
+        { src: 'Asset/IMG_7234.jpg', title: 'Volunteer Service', desc: 'Community help' },
+        { src: 'Asset/IMG_7235.jpg', title: 'Community Building', desc: 'Together we rise' },
+        { src: 'Asset/IMG_7236.jpg', title: 'Healthcare Mission', desc: 'Medical care' },
+        { src: 'Asset/IMG_7247.jpg', title: 'Education Initiative', desc: 'Learning support' },
+        { src: 'Asset/IMG_7249.jpg', title: 'Disaster Relief', desc: 'Emergency help' },
+        { src: 'Asset/IMG_7250.jpg', title: 'Youth Support', desc: 'Future builders' },
+        { src: 'Asset/IMG_7251.jpg', title: 'Health Programs', desc: 'Medical services' },
+        { src: 'Asset/IMG_7253.jpg', title: 'Charity Event', desc: 'Fundraiser' },
+        { src: 'Asset/IMG_7254.jpg', title: 'Volunteer Work', desc: 'Dedicated service' },
+        { src: 'Asset/IMG_7255.jpg', title: 'Community Aid', desc: 'Local assistance' },
+        { src: 'Asset/IMG_7256.jpg', title: 'Education Drive', desc: 'Scholastic aid' },
+        { src: 'Asset/IMG_7258.jpg', title: 'Healthcare Outreach', desc: 'Medical missions' },
+        { src: 'Asset/IMG_7260.jpg', title: 'Relief Mission', desc: 'Aid efforts' },
+        { src: 'Asset/IMG_7261.jpg', title: 'Youth Programs', desc: 'Youth empowerment' },
+        { src: 'Asset/IMG_7262.jpg', title: 'Community Service', desc: 'Helping others' },
+        { src: 'Asset/IMG_7263.jpg', title: 'Education Support', desc: 'Student support' },
+        { src: 'Asset/IMG_7264.jpg', title: 'Charity Work', desc: 'Giving assistance' },
+        { src: 'Asset/IMG_7265.jpg', title: 'Volunteer Efforts', desc: 'Service dedication' },
+        { src: 'Asset/IMG_7266.jpg', title: 'Health Initiative', desc: 'Wellness programs' },
+        { src: 'Asset/IMG_7268.jpg', title: 'Outreach Activities', desc: 'Community outreach' },
+        { src: 'Asset/IMG_7269.jpg', title: 'Disaster Response', desc: 'Emergency response' },
+        { src: 'Asset/IMG_7270.jpg', title: 'Education Programs', desc: 'Learning initiatives' },
+        { src: 'Asset/IMG_7271.jpg', title: 'Youth Education', desc: 'Youth learning' },
+        { src: 'Asset/IMG_7272.jpg', title: 'Community Building', desc: 'Building together' },
+        { src: 'Asset/IMG_7273.jpg', title: 'Healthcare Program', desc: 'Medical support' },
+        { src: 'Asset/IMG_7274.jpg', title: 'Charity Mission', desc: 'Aid mission' },
+        { src: 'Asset/IMG_7275.jpg', title: 'Volunteer Service', desc: 'Community service' },
+        { src: 'Asset/IMG_7277.jpg', title: 'Education Initiative', desc: 'Learning support' },
+        { src: 'Asset/IMG_7278.jpg', title: 'Health Camp', desc: 'Medical camp' },
+        { src: 'Asset/IMG_7279.jpg', title: 'Community Aid', desc: 'Local help' },
+        { src: 'Asset/IMG_7280.jpg', title: 'Relief Efforts', desc: 'Aid distribution' },
+        { src: 'Asset/IMG_7282.jpg', title: 'Youth Support', desc: 'Youth assistance' },
+        { src: 'Asset/IMG_7290.jpg', title: 'Healthcare Access', desc: 'Medical access' }
+    ];
+    
+    // Shuffle and pick 5 random images
+    const shuffled = [...allImages].sort(() => 0.5 - Math.random());
+    const selectedImages = shuffled.slice(0, 5);
+    
+    // Clear existing content
+    galleryContainer.innerHTML = '';
+    
+    // Create gallery items
+    selectedImages.forEach((img, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `
+            <img src="${img.src}" alt="${img.title}" loading="lazy">
+            <div class="gallery-item-overlay">
+                <h4>${img.title}</h4>
+                <p>${img.desc}</p>
+            </div>
+        `;
+        galleryContainer.appendChild(item);
+    });
 }
 
 /**
