@@ -53,7 +53,6 @@
     <section class="page-hero">
         <div class="page-hero-content">
             <h1>Contact Us</h1>
-            <p>We'd love to hear from you. Get in touch with any questions or inquiries.</p>
         </div>
     </section>
 
@@ -63,7 +62,7 @@
             <div class="contact-grid">
                 <!-- Contact Information -->
                 <div class="contact-info">
-                    <h3>Get In Touch</h3>
+                    <h3>Details</h3>
                     
                     <div class="contact-item">
                         <div class="contact-icon">
@@ -115,18 +114,11 @@
                     </div>
                 </div>
                 
-                <!--
-                  Formspree: notifications go to the email verified in the Formspree dashboard for this form ID — not from this HTML.
-                  1) Log in at https://formspree.io → open form xvzwyywl → Settings → set "Send submissions to" to gamersloungefoundation@gmail.com (or your @gamersloungefoundation.com inbox) and verify the link Formspree emails you.
-                  2) In Gmail: check Spam; search for "formspree"; add noreply@formspree.io / notifications to contacts if needed.
-                  3) Google Workspace: ensure Formspree sender is not blocked by admin spam rules.
-                -->
                 <div class="contact-form-wrapper">
-                    <h3>Send Us a Message</h3>
+                    <h3>Enquiry</h3>
                     
                     <form id="contactForm" class="contact-form" action="https://formspree.io/f/xvzwyywl" method="POST">
-                        <input type="hidden" name="_subject" value="GLF website contact form">
-                        <!-- CC ensures a copy to this inbox when Formspree allows it (must be verified in Formspree if required) -->
+                        <input type="hidden" name="_subject" value="GLF website enquiry">
                         <input type="hidden" name="_cc" value="gamersloungefoundation@gmail.com">
                         <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
                         
@@ -161,22 +153,18 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+                            <label for="message">Your note *</label>
+                            <textarea id="message" name="message" required placeholder=""></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Send
                         </button>
                     </form>
                     
                     <div id="formSuccess" class="form-success" style="display: none;" role="status" aria-live="polite" tabindex="-1">
-                        <p><i class="fas fa-check-circle" style="color: var(--primary-green);" aria-hidden="true"></i> Thank you! Your message has been sent. We will respond to you as soon as we can.</p>
+                        <p><i class="fas fa-check-circle" style="color: var(--primary-green);" aria-hidden="true"></i> Thank you. We’ll be in touch soon.</p>
                     </div>
-                    
-                    <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
-                        Submissions are sent through Formspree to the address you set in your <a href="https://formspree.io" target="_blank" rel="noopener noreferrer">Formspree account</a> for this form (open the form <code>xvzwyywl</code> → notification email → verify). You can also reach us at <a href="mailto:gamersloungefoundation@gmail.com">gamersloungefoundation@gmail.com</a>.
-                    </p>
                 </div>
             </div>
         </div>
