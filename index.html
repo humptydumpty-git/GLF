@@ -144,19 +144,48 @@
     <section class="gallery-section">
         <div class="section-header">
             <h2>Moments of Impact</h2>
-            <p>Random highlights from our community work</p>
+            <p>Highlights from our community work - Click any image to view in full size</p>
         </div>
         
-        <div class="gallery-container" id="randomGallery">
-            <!-- Images will be randomly loaded via JavaScript -->
+        <!-- Main slideshow display -->
+        <div class="gallery-main">
+            <div class="gallery-slideshow" id="gallerySlideshow">
+                <!-- Main image display -->
+            </div>
+            <div class="gallery-controls">
+                <button class="gallery-btn" onclick="prevGallerySlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="gallery-counter" id="galleryCounter">1 / 20</div>
+                <button class="gallery-btn" onclick="nextGallerySlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="gallery-title" id="galleryTitle"></div>
+        </div>
+        
+        <!-- Thumbnail strip -->
+        <div class="gallery-thumbs-container">
+            <div class="gallery-thumbs" id="galleryThumbs">
+                <!-- Thumbnails will be loaded via JavaScript -->
+            </div>
         </div>
         
         <div style="text-align: center; margin-top: 2rem;">
             <button class="btn btn-secondary" onclick="refreshGallery()">
-                <i class="fas fa-sync-alt"></i> Show Different Photos
+                <i class="fas fa-sync-alt"></i> Load New Photos
             </button>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightboxImage">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <a class="lightbox-prev" onclick="prevLightboxImage()">&#10094;</a>
+        <a class="lightbox-next" onclick="nextLightboxImage()">&#10095;</a>
+    </div>
 
     <!-- Featured Campaigns Section -->
     <section class="campaigns-section">

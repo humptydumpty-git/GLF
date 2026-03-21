@@ -422,20 +422,123 @@ function validateField(field) {
 }
 
 /**
- * Random Gallery - Display 5 random images from Asset folder
+ * Random Gallery - Display 20 random images with slideshow and lightbox
  */
-function initRandomGallery() {
-    loadRandomGallery();
-}
+let galleryImages = [];
+let currentSlideIndex = 0;
+let galleryInterval = null;
 
-// Make refreshGallery available globally for the button onclick
+// Make functions globally available
 window.refreshGallery = function() {
     loadRandomGallery();
 };
 
+window.nextGallerySlide = function() {
+    currentSlideIndex = (currentSlideIndex + 1) % galleryImages.length;
+    updateGalleryDisplay();
+};
+
+window.prevGallerySlide = function() {
+    currentSlideIndex = (currentSlideIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateGalleryDisplay();
+};
+
+window.openLightbox = function(index) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    
+    currentSlideIndex = index;
+    lightboxImg.src = galleryImages[index].src;
+    lightboxCaption.textContent = galleryImages[index].title + ' - ' + galleryImages[index].desc;
+    lightbox.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Stop slideshow when lightbox is open
+    stopGallerySlideshow();
+};
+
+window.closeLightbox = function() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    // Resume slideshow
+    startGallerySlideshow();
+};
+
+window.prevLightboxImage = function() {
+    currentSlideIndex = (currentSlideIndex - 1 + galleryImages.length) % galleryImages.length;
+    const lightboxImg = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    lightboxImg.src = galleryImages[currentSlideIndex].src;
+    lightboxCaption.textContent = galleryImages[currentSlideIndex].title + ' - ' + galleryImages[currentSlideIndex].desc;
+};
+
+window.nextLightboxImage = function() {
+    currentSlideIndex = (currentSlideIndex + 1) % galleryImages.length;
+    const lightboxImg = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    lightboxImg.src = galleryImages[currentSlideIndex].src;
+    lightboxCaption.textContent = galleryImages[currentSlideIndex].title + ' - ' + galleryImages[currentSlideIndex].desc;
+};
+
+function initRandomGallery() {
+    loadRandomGallery();
+}
+
+function startGallerySlideshow() {
+    if (galleryInterval) clearInterval(galleryInterval);
+    galleryInterval = setInterval(() => {
+        currentSlideIndex = (currentSlideIndex + 1) % galleryImages.length;
+        updateGalleryDisplay();
+    }, 3000); // 3 seconds
+}
+
+function stopGallerySlideshow() {
+    if (galleryInterval) {
+        clearInterval(galleryInterval);
+        galleryInterval = null;
+    }
+}
+
+function updateGalleryDisplay() {
+    const slideshow = document.getElementById('gallerySlideshow');
+    const counter = document.getElementById('galleryCounter');
+    const title = document.getElementById('galleryTitle');
+    const thumbs = document.getElementById('galleryThumbs');
+    
+    if (!slideshow || galleryImages.length === 0) return;
+    
+    // Update main image
+    slideshow.innerHTML = `<img src="${galleryImages[currentSlideIndex].src}" alt="${galleryImages[currentSlideIndex].title}" onclick="openLightbox(${currentSlideIndex})">`;
+    
+    // Update counter
+    if (counter) counter.textContent = `${currentSlideIndex + 1} / ${galleryImages.length}`;
+    
+    // Update title
+    if (title) title.textContent = galleryImages[currentSlideIndex].title;
+    
+    // Update thumbnails
+    if (thumbs) {
+        thumbs.innerHTML = '';
+        galleryImages.forEach((img, index) => {
+            const thumb = document.createElement('div');
+            thumb.className = 'gallery-thumb' + (index === currentSlideIndex ? ' active' : '');
+            thumb.innerHTML = `<img src="${img.src}" alt="${img.title}" onclick="goToSlide(${index})">`;
+            thumbs.appendChild(thumb);
+        });
+    }
+}
+
+window.goToSlide = function(index) {
+    currentSlideIndex = index;
+    updateGalleryDisplay();
+    // Reset the interval when manually clicking
+    startGallerySlideshow();
+};
+
 function loadRandomGallery() {
-    const galleryContainer = document.getElementById('randomGallery');
-    if (!galleryContainer) return;
+    // Stop existing slideshow
+    stopGallerySlideshow();
     
     // List of all available images in the Asset folder
     const allImages = [
@@ -544,27 +647,35 @@ function loadRandomGallery() {
         { src: 'Asset/IMG_7290.jpg', title: 'Healthcare Access', desc: 'Medical access' }
     ];
     
-    // Shuffle and pick 5 random images
+    // Shuffle and pick 20 random images
     const shuffled = [...allImages].sort(() => 0.5 - Math.random());
-    const selectedImages = shuffled.slice(0, 5);
+    galleryImages = shuffled.slice(0, 20);
+    currentSlideIndex = 0;
     
-    // Clear existing content
-    galleryContainer.innerHTML = '';
+    // Update display
+    updateGalleryDisplay();
     
-    // Create gallery items
-    selectedImages.forEach((img, index) => {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        item.innerHTML = `
-            <img src="${img.src}" alt="${img.title}" loading="lazy">
-            <div class="gallery-item-overlay">
-                <h4>${img.title}</h4>
-                <p>${img.desc}</p>
-            </div>
-        `;
-        galleryContainer.appendChild(item);
-    });
+    // Start slideshow (auto-advance every 3 seconds)
+    startGallerySlideshow();
 }
+
+// Close lightbox when clicking outside the image
+document.addEventListener('click', function(e) {
+    const lightbox = document.getElementById('lightbox');
+    if (e.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+// Keyboard navigation for lightbox
+document.addEventListener('keydown', function(e) {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox.style.display === 'block') {
+        if (e.key === 'ArrowLeft') prevLightboxImage();
+        if (e.key === 'ArrowRight') nextLightboxImage();
+        if (e.key === 'Escape') closeLightbox();
+    }
+});
 
 /**
  * Utility: Debounce function
