@@ -300,8 +300,18 @@ function initFormValidation() {
                     headers: {
                         'Accept': 'application/json'
                     }
-                }).then(response => {
-                    if (response.ok) {
+                }).then(async response => {
+                    let data = {};
+                    try {
+                        const text = await response.text();
+                        if (text) data = JSON.parse(text);
+                    } catch (e) {
+                        data = {};
+                    }
+
+                    const hasErrors = Array.isArray(data.errors) && data.errors.length > 0;
+                    const failed = !response.ok || data.ok === false || data.error || hasErrors;
+                    if (!failed) {
                         contactForm.style.display = 'none';
                         const formSuccess = document.getElementById('formSuccess');
                         if (formSuccess) {
@@ -310,12 +320,13 @@ function initFormValidation() {
                             formSuccess.focus();
                         }
                     } else {
-                        alert('There was a problem sending your message. Please try again.');
+                        const msg = (data && (data.error || data.message)) ? String(data.error || data.message) : ('HTTP ' + response.status);
+                        alert('Could not send your message: ' + msg + '\n\nIf this persists, email gamersloungefoundation@gmail.com directly and confirm your Formspree form email in the Formspree dashboard.');
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                     }
                 }).catch(() => {
-                    alert('There was a problem sending your message. Please try again.');
+                    alert('There was a problem sending your message. Please try again or email gamersloungefoundation@gmail.com.');
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
                 });

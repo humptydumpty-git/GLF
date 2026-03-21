@@ -115,12 +115,19 @@
                     </div>
                 </div>
                 
-                <!-- Contact Form (Formspree → gamersloungefoundation@gmail.com) -->
+                <!--
+                  Formspree: notifications go to the email verified in the Formspree dashboard for this form ID — not from this HTML.
+                  1) Log in at https://formspree.io → open form xvzwyywl → Settings → set "Send submissions to" to gamersloungefoundation@gmail.com (or your @gamersloungefoundation.com inbox) and verify the link Formspree emails you.
+                  2) In Gmail: check Spam; search for "formspree"; add noreply@formspree.io / notifications to contacts if needed.
+                  3) Google Workspace: ensure Formspree sender is not blocked by admin spam rules.
+                -->
                 <div class="contact-form-wrapper">
                     <h3>Send Us a Message</h3>
                     
                     <form id="contactForm" class="contact-form" action="https://formspree.io/f/xvzwyywl" method="POST">
                         <input type="hidden" name="_subject" value="GLF website contact form">
+                        <!-- CC ensures a copy to this inbox when Formspree allows it (must be verified in Formspree if required) -->
+                        <input type="hidden" name="_cc" value="gamersloungefoundation@gmail.com">
                         <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
                         
                         <div class="form-row">
@@ -130,7 +137,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="contactEmail">Email Address *</label>
-                                <input type="email" id="contactEmail" name="email" required placeholder="Enter your email">
+                                <input type="email" id="contactEmail" name="email" required placeholder="Enter your email" autocomplete="email" inputmode="email">
                             </div>
                         </div>
                         
@@ -168,7 +175,7 @@
                     </div>
                     
                     <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
-                        Submissions are delivered securely via Formspree to our team inbox.
+                        Submissions are sent through Formspree to the address you set in your <a href="https://formspree.io" target="_blank" rel="noopener noreferrer">Formspree account</a> for this form (open the form <code>xvzwyywl</code> → notification email → verify). You can also reach us at <a href="mailto:gamersloungefoundation@gmail.com">gamersloungefoundation@gmail.com</a>.
                     </p>
                 </div>
             </div>
