@@ -174,9 +174,6 @@ ul {
     width: 80px;
     height: 80px;
     border-radius: var(--radius-full);
-    object-fit: contain;
-    background: rgba(255, 255, 255, 0.06);
-    flex-shrink: 0;
 }
 
 .navbar-logo span {
@@ -1577,21 +1574,6 @@ ul {
     box-shadow: var(--shadow-md);
 }
 
-.contact-info-brand {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-}
-
-.contact-info-brand img {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    object-fit: contain;
-    background: var(--off-white);
-    border: 3px solid rgba(0, 200, 83, 0.35);
-    box-shadow: var(--shadow-sm);
-}
-
 .contact-info h3 {
     color: var(--text-primary);
     margin-bottom: var(--spacing-lg);
@@ -1789,15 +1771,6 @@ ul {
 
 .footer-about .navbar-logo {
     margin-bottom: var(--spacing-md);
-}
-
-.footer-about .navbar-logo img {
-    width: 80px;
-    height: 80px;
-    border-radius: var(--radius-full);
-    object-fit: contain;
-    background: rgba(255, 255, 255, 0.06);
-    flex-shrink: 0;
 }
 
 .footer-about p {
