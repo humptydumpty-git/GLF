@@ -270,6 +270,35 @@ function initSmoothScroll() {
 }
 
 /**
+ * Simple Mailto Form Handler
+ */
+function sendEmail(event) {
+    event.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('contactEmail').value;
+    const phone = document.getElementById('phone').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    // Create email subject
+    const emailSubject = encodeURIComponent('GLF Website: ' + subject);
+    
+    // Create email body with all form information
+    const emailBody = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Phone: ' + (phone || 'Not provided') + '\n' +
+        'Subject: ' + subject + '\n\n' +
+        'Message:\n' + message
+    );
+    
+    // Open email client with pre-filled content
+    window.location.href = 'mailto:gamersloungefoundation@gmail.com?subject=' + emailSubject + '&body=' + emailBody;
+}
+
+/**
  * Form validation and handling
  */
 function initFormValidation() {

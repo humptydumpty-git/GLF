@@ -119,11 +119,8 @@
                 <div class="contact-form-wrapper">
                     <h3>Send Us a Message</h3>
                     
-                    <!-- Formspree Form -->
-                    <form id="contactForm" class="contact-form" action="https://formspree.io/f/xvzwyywl" method="POST">
-                        <input type="hidden" name="_subject" value="New Contact Form Submission - GLF Website">
-                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-                        
+                    <!-- Simple Mailto Form -->
+                    <form id="contactForm" class="contact-form" onsubmit="sendEmail(event)">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
@@ -144,12 +141,12 @@
                                 <label for="subject">Subject *</label>
                                 <select id="subject" name="subject" required>
                                     <option value="">Select a subject</option>
-                                    <option value="general">General Inquiry</option>
-                                    <option value="donation">Donation Question</option>
-                                    <option value="volunteer">Volunteer Opportunity</option>
-                                    <option value="partnership">Partnership</option>
-                                    <option value="media">Media/Press</option>
-                                    <option value="other">Other</option>
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Donation Question">Donation Question</option>
+                                    <option value="Volunteer Opportunity">Volunteer Opportunity</option>
+                                    <option value="Partnership">Partnership</option>
+                                    <option value="Media/Press">Media/Press</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                         </div>
@@ -164,11 +161,10 @@
                         </button>
                     </form>
                     
-                    <!-- Success Message (Hidden by default) -->
-                    <div id="formSuccess" style="display: none; text-align: center; padding: 2rem;">
-                        <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--primary-green); margin-bottom: 1rem;"></i>
-                        <h3>Message Sent Successfully!</h3>
-                        <p>Thank you for reaching out. We'll get back to you as soon as possible.</p>
+                    <!-- Info Message -->
+                    <div style="text-align: center; padding: 1.5rem; background: var(--off-white); border-radius: var(--radius-md); margin-top: 1rem;">
+                        <i class="fas fa-info-circle" style="color: var(--primary-blue); margin-right: 0.5rem;"></i>
+                        <span style="color: var(--text-secondary);">Clicking send will open your email client with a pre-filled message to <strong>gamersloungefoundation@gmail.com</strong></span>
                     </div>
                 </div>
             </div>
