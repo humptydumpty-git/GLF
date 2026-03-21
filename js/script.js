@@ -306,46 +306,46 @@ function initFormValidation() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            
-            // Send to Formspree using fetch
-            fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    // Hide form and show success message
-                    contactForm.style.display = 'none';
-                    const formSuccess = document.getElementById('formSuccess');
-                    if (formSuccess) {
-                        formSuccess.style.display = 'block';
+        const actionAttr = contactForm.getAttribute('action');
+        const usesRemoteSubmit = actionAttr && /^https?:\/\//i.test(actionAttr.trim());
+
+        // Only intercept submit for hosted forms (e.g. Formspree). Mailto / no action uses inline handler or native behavior.
+        if (usesRemoteSubmit) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                const formData = new FormData(contactForm);
+                
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
                     }
-                } else {
-                    // Show error
+                }).then(response => {
+                    if (response.ok) {
+                        contactForm.style.display = 'none';
+                        const formSuccess = document.getElementById('formSuccess');
+                        if (formSuccess) {
+                            formSuccess.style.display = 'block';
+                        }
+                    } else {
+                        alert('There was a problem sending your message. Please try again.');
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                }).catch(() => {
                     alert('There was a problem sending your message. Please try again.');
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                }
-            }).catch(error => {
-                // Show error
-                alert('There was a problem sending your message. Please try again.');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+                });
             });
-        });
+        }
         
         // Real-time validation
         const inputs = contactForm.querySelectorAll('input, textarea, select');
@@ -676,8 +676,12 @@ function loadRandomGallery() {
         { src: 'Asset/IMG_7290.jpg', title: 'Healthcare Access', desc: 'Medical access' }
     ];
     
-    // Shuffle and pick 20 random images
-    const shuffled = [...allImages].sort(() => 0.5 - Math.random());
+    // Shuffle and pick 20 random images (Fisher–Yates)
+    const shuffled = [...allImages];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     galleryImages = shuffled.slice(0, 20);
     currentSlideIndex = 0;
     
@@ -699,11 +703,10 @@ document.addEventListener('click', function(e) {
 // Keyboard navigation for lightbox
 document.addEventListener('keydown', function(e) {
     const lightbox = document.getElementById('lightbox');
-    if (lightbox.style.display === 'block') {
-        if (e.key === 'ArrowLeft') prevLightboxImage();
-        if (e.key === 'ArrowRight') nextLightboxImage();
-        if (e.key === 'Escape') closeLightbox();
-    }
+    if (!lightbox || window.getComputedStyle(lightbox).display === 'none') return;
+    if (e.key === 'ArrowLeft') prevLightboxImage();
+    if (e.key === 'ArrowRight') nextLightboxImage();
+    if (e.key === 'Escape') closeLightbox();
 });
 
 /**

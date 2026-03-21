@@ -1,4 +1,4 @@
-i/* =============================================
+/* =============================================
    GAMERS LOUNGE FOUNDATION (GLF) - Global Styles
    Vibrant, Colourful & Lively Theme
    ============================================= */
@@ -1686,7 +1686,7 @@ ul {
 
 .faq-item.active .faq-answer {
     padding: 0 var(--spacing-md) var(--spacing-md);
-    max-height: 200px;
+    max-height: 1000px;
 }
 
 .faq-answer p {

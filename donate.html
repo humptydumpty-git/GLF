@@ -318,7 +318,7 @@
                 email: email,
                 amount: selectedAmount * 100, // Paystack expects amount in pesewas for GHS
                 currency: 'GHS',
-                ref: 'GLF-' + Math.random().toString(36).substr(2, 9),
+                ref: 'GLF-' + Math.random().toString(36).slice(2, 11),
                 metadata: {
                     firstName: firstName,
                     phone: phone,
