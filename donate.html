@@ -31,8 +31,8 @@
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
-                <img src="logo/GL Logo.jpg" alt="GLF Logo">
-                <span>GLF</span>
+                <img src="logo/GL Logo.jpg" alt="Gamers Lounge Foundation Logo">
+                <span>Gamers Lounge Foundation</span>
             </a>
             
             <div class="navbar-menu" id="navbarMenu">
@@ -84,14 +84,14 @@
                 
                 <!-- Preset Amounts -->
                 <div class="donate-amounts">
-                    <button class="amount-btn" data-amount="10">$10</button>
-                    <button class="amount-btn" data-amount="25">$25</button>
-                    <button class="amount-btn active" data-amount="50">$50</button>
-                    <button class="amount-btn" data-amount="100">$100</button>
+                    <button class="amount-btn" data-amount="50">₵50</button>
+                    <button class="amount-btn" data-amount="100">₵100</button>
+                    <button class="amount-btn active" data-amount="200">₵200</button>
+                    <button class="amount-btn" data-amount="500">₵500</button>
                     
                     <div class="custom-amount">
                         <span style="font-weight: 600; color: var(--text-secondary);">Custom Amount:</span>
-                        <input type="number" id="customAmount" placeholder="Enter amount in USD" min="1">
+                        <input type="number" id="customAmount" placeholder="Enter amount in Ghana Cedis" min="1">
                     </div>
                 </div>
                 
@@ -99,71 +99,18 @@
                 <form id="donationForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="firstName">First Name *</label>
-                            <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                            <label for="firstName">Name *</label>
+                            <input type="text" id="firstName" name="firstName" required placeholder="Enter your name">
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Last Name *</label>
-                            <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <select id="country" name="country">
-                                <option value="">Select Country</option>
-                                <option value="GH">Ghana</option>
-                                <option value="NG">Nigeria</option>
-                                <option value="KE">Kenya</option>
-                                <option value="ZA">South Africa</option>
-                                <option value="UK">United Kingdom</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
-                                <option value="AU">Australia</option>
-                                <option value="OTHER">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="campaign">Select Campaign to Support</label>
-                        <select id="campaign" name="campaign">
-                            <option value="general">General Fund (Where Most Needed)</option>
-                            <option value="education">Education for All</option>
-                            <option value="disaster">Disaster Relief</option>
-                            <option value="healthcare">Healthcare Access</option>
-                            <option value="cleanwater">Clean Water Initiative</option>
-                            <option value="food">Food Security Program</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="dedication">Dedication (Optional)</label>
-                        <select id="dedication" name="dedication">
-                            <option value="">No Dedication</option>
-                            <option value="honor">In Honor of Someone</option>
-                            <option value="memory">In Memory of Someone</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group" id="dedicationNameGroup" style="display: none;">
-                        <label for="dedicationName">Name to Include</label>
-                        <input type="text" id="dedicationName" name="dedicationName" placeholder="Enter name for dedication">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message (Optional)</label>
-                        <textarea id="message" name="message" placeholder="Leave a message of support..."></textarea>
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">
@@ -174,15 +121,7 @@
                     <div class="security-badges">
                         <div class="security-badge">
                             <i class="fas fa-lock"></i>
-                            <span>SSL Secure</span>
-                        </div>
-                        <div class="security-badge">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>PCI Compliant</span>
-                        </div>
-                        <div class="security-badge">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Tax Deductible</span>
+                            <span>Secure Payment</span>
                         </div>
                     </div>
                 </form>
@@ -267,14 +206,13 @@
             <div class="footer-grid">
                 <div class="footer-about">
                     <div class="navbar-logo">
-                        <img src="logo/GL Logo.jpg" alt="GLF Logo">
-                        <span>GLF</span>
+                        <img src="logo/GL Logo.jpg" alt="Gamers Lounge Foundation Logo">
+                        <span>Gamers Lounge Foundation</span>
                     </div>
                     <p>Gamers Lounge Foundation is dedicated to empowering communities through education, disaster relief, and charitable initiatives. Join us in making a difference.</p>
                     <div class="footer-social">
-                        <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/gamersloungefoundation/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/447868157126" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
@@ -303,14 +241,14 @@
                     <h4>Contact Info</h4>
                     <ul>
                         <li><a href="tel:+233557276978">+233 557276978</a></li>
-                        <li><a href="mailto:info@gamersloungefoundation.org">info@gamersloungefoundation.org</a></li>
+                        <li><a href="mailto:gamersloungefoundation@gmail.com">gamersloungefoundation@gmail.com</a></li>
                         <li>Ghana, West Africa</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Gamers Lounge Foundation. All rights reserved.</p>
+                <p>&copy; 2026 Gamers Lounge Foundation. All rights reserved.</p>
                 <p>Registered Charity Organization</p>
             </div>
         </div>
@@ -331,7 +269,7 @@
     <!-- Paystack Donation Script -->
     <script>
         // Donation amount state
-        let selectedAmount = 50;
+        let selectedAmount = 200;
         let donationType = 'one-time';
         
         // Amount button click handlers
@@ -361,23 +299,13 @@
             });
         });
         
-        // Dedication field toggle
-        document.getElementById('dedication').addEventListener('change', function() {
-            const group = document.getElementById('dedicationNameGroup');
-            group.style.display = this.value ? 'block' : 'none';
-        });
-        
         // Form submission with Paystack
         document.getElementById('donationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
-            const campaign = document.getElementById('campaign').value;
-            const dedication = document.getElementById('dedication').value;
-            const dedicationName = document.getElementById('dedicationName').value;
             
             if (selectedAmount < 1) {
                 alert('Please enter a valid donation amount.');
@@ -388,17 +316,13 @@
             const paystack = PaystackPop.setup({
                 key: 'pk_live_fb0018e985ae2fbf1765806edbf758d73a0db930', // Live Paystack public key
                 email: email,
-                amount: selectedAmount * 100, // Paystack expects amount in kobo
-                currency: 'USD',
+                amount: selectedAmount * 100, // Paystack expects amount in pesewas for GHS
+                currency: 'GHS',
                 ref: 'GLF-' + Math.random().toString(36).substr(2, 9),
                 metadata: {
                     firstName: firstName,
-                    lastName: lastName,
                     phone: phone,
-                    campaign: campaign,
-                    donationType: donationType,
-                    dedication: dedication,
-                    dedicationName: dedicationName
+                    donationType: donationType
                 },
                 callback: function(response) {
                     // Payment successful

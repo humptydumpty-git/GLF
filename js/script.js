@@ -277,7 +277,7 @@ function initFormValidation() {
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            // Formspree handles the submission, but we can add client-side validation
+            e.preventDefault();
             
             // Show loading state
             const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -285,14 +285,36 @@ function initFormValidation() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Let Formspree handle the submission
-            // The page will redirect or show response
+            // Get form data
+            const formData = new FormData(contactForm);
             
-            // Reset after timeout (in case of no redirect)
-            setTimeout(() => {
+            // Send to Formspree using fetch
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Hide form and show success message
+                    contactForm.style.display = 'none';
+                    const formSuccess = document.getElementById('formSuccess');
+                    if (formSuccess) {
+                        formSuccess.style.display = 'block';
+                    }
+                } else {
+                    // Show error
+                    alert('There was a problem sending your message. Please try again.');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            }).catch(error => {
+                // Show error
+                alert('There was a problem sending your message. Please try again.');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 10000);
+            });
         });
         
         // Real-time validation

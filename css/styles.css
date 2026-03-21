@@ -167,17 +167,17 @@ ul {
 .navbar-logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-sm);
 }
 
 .navbar-logo img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: var(--radius-full);
 }
 
 .navbar-logo span {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--white);
     background: var(--gradient-primary);
