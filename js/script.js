@@ -4,7 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functions
     initNavbar();
     initHeroRotator();
     initSlideshow();
@@ -12,34 +11,36 @@ document.addEventListener('DOMContentLoaded', function() {
     initCounters();
     initSmoothScroll();
     initFormValidation();
-    initRandomGallery();
-    initLightboxControls();
+    if (document.getElementById('gallerySlideshow')) {
+        initRandomGallery();
+        initLightboxControls();
+    }
 });
 
 /**
  * Hero image: random order on each page load, change every 5 seconds
  */
 const HERO_IMAGES = [
-    { src: 'Asset/IMG_7116.jpg', alt: 'GLF community impact' },
-    { src: 'Asset/IMG_7136.jpg', alt: 'GLF community outreach' },
-    { src: 'Asset/IMG_7145.jpg', alt: 'GLF education initiative' },
-    { src: 'Asset/IMG_7156.jpg', alt: 'GLF disaster relief' },
+    { src: 'Asset/IMG_7116.jpg', alt: 'Gamers Lounge Foundation community activity' },
+    { src: 'Asset/IMG_7136.jpg', alt: 'GLF community gathering' },
+    { src: 'Asset/IMG_7145.jpg', alt: 'GLF youth engagement' },
+    { src: 'Asset/IMG_7156.jpg', alt: 'GLF inclusive programme' },
     { src: 'Asset/IMG_7162.jpg', alt: 'GLF volunteers' },
-    { src: 'Asset/IMG_7176.jpg', alt: 'GLF healthcare access' },
-    { src: 'Asset/IMG_7186.jpg', alt: 'GLF education campaign' },
-    { src: 'Asset/IMG_7195.jpg', alt: 'GLF relief efforts' },
-    { src: 'Asset/IMG_7204.jpg', alt: 'GLF healthcare program' },
-    { src: 'Asset/IMG_7222.jpg', alt: 'GLF scholarship support' },
-    { src: 'Asset/IMG_7232.jpg', alt: 'GLF community leader' },
-    { src: 'Asset/IMG_7247.jpg', alt: 'GLF education support' },
-    { src: 'Asset/IMG_7260.jpg', alt: 'GLF relief mission' },
-    { src: 'Asset/IMG_7270.jpg', alt: 'GLF education programs' },
-    { src: 'Asset/IMG_7280.jpg', alt: 'GLF community development' },
-    { src: 'Asset/IMG_7290.jpg', alt: 'GLF healthcare outreach' },
+    { src: 'Asset/IMG_7176.jpg', alt: 'GLF inclusive activities' },
+    { src: 'Asset/IMG_7186.jpg', alt: 'GLF events and programmes' },
+    { src: 'Asset/IMG_7195.jpg', alt: 'GLF community support' },
+    { src: 'Asset/IMG_7204.jpg', alt: 'GLF outreach' },
+    { src: 'Asset/IMG_7222.jpg', alt: 'GLF participants' },
+    { src: 'Asset/IMG_7232.jpg', alt: 'GLF community' },
+    { src: 'Asset/IMG_7247.jpg', alt: 'GLF programme activity' },
+    { src: 'Asset/IMG_7260.jpg', alt: 'GLF youth and community' },
+    { src: 'Asset/IMG_7270.jpg', alt: 'GLF learning and creativity' },
+    { src: 'Asset/IMG_7280.jpg', alt: 'GLF community connection' },
+    { src: 'Asset/IMG_7290.jpg', alt: 'GLF wellbeing and outreach' },
     { src: 'Asset/IMG_7102.jpg', alt: 'GLF outreach' },
     { src: 'Asset/IMG_7120.jpg', alt: 'GLF community event' },
-    { src: 'Asset/IMG_7140.jpg', alt: 'GLF charity mission' },
-    { src: 'Asset/IMG_7214.jpg', alt: 'GLF youth education' }
+    { src: 'Asset/IMG_7140.jpg', alt: 'GLF mission in action' },
+    { src: 'Asset/IMG_7214.jpg', alt: 'GLF youth engagement' }
 ];
 
 function shuffleHeroImages(arr) {

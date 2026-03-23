@@ -3,48 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Donate to Gamers Lounge Foundation. Support our missions in education, disaster relief, and community development. Every contribution makes a difference.">
-    <meta name="keywords" content="donate, charity, make a donation, support GLF, Paystack donation">
+    <meta name="description" content="Donate to Gamers Lounge Foundation. Your gift supports gaming-for-good programmes, inclusive community events, and youth opportunity in Ghana.">
+    <meta name="keywords" content="donate, charity, GLF, Paystack donation, Ghana charity, gaming charity">
     <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Donate - Gamers Lounge Foundation">
-    <meta property="og:description" content="Your donation can change lives. Support education, disaster relief, and community development.">
+
+    <meta property="og:title" content="Donate | Gamers Lounge Foundation">
+    <meta property="og:description" content="Support GLF’s mission: gaming and e-sports for social impact and community wellbeing.">
     <meta property="og:type" content="website">
-    
+
     <title>Donate | Gamers Lounge Foundation</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="logo/GL Logo.jpg">
-    
-    <!-- Font Awesome for Icons -->
+
+    <link rel="icon" type="image/jpeg" href="logo/main_logo.jpeg">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Paystack SDK -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
-    
-    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
-                <img src="logo/GL Logo.jpg" alt="Gamers Lounge Foundation Logo">
+                <img src="logo/main_logo.jpeg" alt="Gamers Lounge Foundation logo" width="160" height="52">
                 <span>Gamers Lounge Foundation</span>
             </a>
-            
+
             <div class="navbar-menu" id="navbarMenu">
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
                 <a href="donate.html" class="active">Donate</a>
-                <a href="impact.html">Impact</a>
                 <a href="contact.html">Contact</a>
                 <a href="donate.html" class="navbar-cta">Donate Now</a>
             </div>
-            
-            <div class="navbar-toggle" id="navbarToggle">
+
+            <div class="navbar-toggle" id="navbarToggle" aria-label="Open menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -52,96 +43,89 @@
         </div>
     </nav>
 
-    <!-- Page Hero -->
     <section class="page-hero donate-hero">
         <div class="page-hero-content">
-            <h1>Make a Donation</h1>
-            <p>Your generosity can transform lives. Choose an amount and help us build a better future for those in need.</p>
+            <h1>Make a donation</h1>
+            <p>Your support helps us run programmes that use gaming and e-sports to serve communities with care and inclusion.</p>
         </div>
     </section>
 
-    <!-- Donate Section -->
     <section class="donate-section">
         <div class="donate-container">
-            <!-- Donation Form -->
             <div class="donation-form">
-                <h3 style="text-align: center; margin-bottom: 1.5rem;">Select Donation Amount</h3>
-                
-                <!-- Preset Amounts -->
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Select donation amount</h3>
+
                 <div class="donate-amounts">
-                    <button class="amount-btn" data-amount="50">₵50</button>
-                    <button class="amount-btn" data-amount="100">₵100</button>
-                    <button class="amount-btn active" data-amount="200">₵200</button>
-                    <button class="amount-btn" data-amount="500">₵500</button>
-                    
+                    <button type="button" class="amount-btn" data-amount="50">₵50</button>
+                    <button type="button" class="amount-btn" data-amount="100">₵100</button>
+                    <button type="button" class="amount-btn active" data-amount="200">₵200</button>
+                    <button type="button" class="amount-btn" data-amount="500">₵500</button>
+
                     <div class="custom-amount">
-                        <span style="font-weight: 600; color: var(--text-secondary);">Custom Amount:</span>
-                        <input type="number" id="customAmount" placeholder="Enter amount in Ghana Cedis" min="1">
+                        <span style="font-weight: 600; color: var(--text-secondary);">Custom amount:</span>
+                        <input type="number" id="customAmount" placeholder="Enter amount in Ghana Cedis (GHS)" min="1" inputmode="decimal">
                     </div>
                 </div>
-                
-                <!-- Donation Details -->
+
                 <form id="donationForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName">Name *</label>
-                            <input type="text" id="firstName" name="firstName" required placeholder="Enter your name">
+                            <input type="text" id="firstName" name="firstName" required placeholder="Your name" autocomplete="name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                            <input type="email" id="email" name="email" required placeholder="Your email" autocomplete="email">
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        <input type="tel" id="phone" name="phone" placeholder="Optional" autocomplete="tel">
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">
-                        <i class="fas fa-heart"></i> Donate Now
+                        <i class="fas fa-heart" aria-hidden="true"></i> Donate now
                     </button>
-                    
-                    <!-- Security Badges -->
+
                     <div class="security-badges">
                         <div class="security-badge">
-                            <i class="fas fa-lock"></i>
-                            <span>Secure Payment</span>
+                            <i class="fas fa-lock" aria-hidden="true"></i>
+                            <span>Secure payment via Paystack</span>
                         </div>
                     </div>
                 </form>
             </div>
-            
-            <!-- FAQ for Donors -->
+
             <div style="margin-top: 3rem;">
-                <h3 style="text-align: center; margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
-                
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Frequently asked questions</h3>
+
                 <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
                     <div class="faq-item">
-                        <div class="faq-question">How are my donations used?</div>
+                        <div class="faq-question">How are donations used?</div>
                         <div class="faq-answer">
-                            <p>Your donations directly fund our programs in education, disaster relief, healthcare, and community development. We ensure that at least 85% of all donations go directly to program implementation.</p>
+                            <p>Gifts support our charitable work as described in our mission—gaming and e-sports for social impact, inclusive events, wellbeing-focused programmes, and youth opportunity. We use funds responsibly and can answer questions about how donations are applied.</p>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
-                        <div class="faq-question">Is my donation tax-deductible?</div>
+                        <div class="faq-question">How do I get a receipt?</div>
                         <div class="faq-answer">
-                            <p>Yes, Gamers Lounge Foundation is a registered charity. All donations are tax-deductible to the extent allowed by law. You will receive a receipt for your records.</p>
+                            <p>After a successful payment, keep your transaction reference from Paystack. For formal or tax receipts, email us with your details and we will help where applicable under local rules.</p>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">Can I donate more than once?</div>
                         <div class="faq-answer">
-                            <p>Yes. You can return to this page anytime to make another one-time donation. Your support each time helps us plan and deliver programs.</p>
+                            <p>Yes. You can return to this page anytime to make another one-time donation.</p>
                         </div>
                     </div>
-                    
+
                     <div class="faq-item">
                         <div class="faq-question">Is my payment information secure?</div>
                         <div class="faq-answer">
-                            <p>Yes, we use Paystack for secure payment processing. Your payment information is encrypted and never stored on our servers. We're also PCI compliant.</p>
+                            <p>Payments are processed by Paystack. Card and payment details are handled on their secure pages; we do not store full card data on this website.</p>
                         </div>
                     </div>
                 </div>
@@ -149,81 +133,78 @@
         </div>
     </section>
 
-    <!-- Other Ways to Give Section -->
     <section class="about-section" style="background: var(--off-white);">
         <div class="about-container">
             <div class="section-header">
-                <h2>Other Ways to Give</h2>
-                <p>There are many ways to support GLF's mission</p>
+                <h2>Other ways to give</h2>
+                <p>Partnership, time, and skills matter too</p>
             </div>
-            
+
             <div class="mvv-grid">
                 <div class="mvv-card">
                     <div class="mvv-icon">
-                        <i class="fas fa-bank"></i>
+                        <i class="fas fa-bank" aria-hidden="true"></i>
                     </div>
-                    <h3>Bank Transfer</h3>
-                    <p>Make a direct bank transfer to support our work. Contact us for bank details.</p>
+                    <h3>Bank transfer</h3>
+                    <p>Contact us for bank details if you prefer to transfer directly.</p>
                 </div>
-                
+
                 <div class="mvv-card">
                     <div class="mvv-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-mobile-alt" aria-hidden="true"></i>
                     </div>
-                    <h3>Mobile Money</h3>
-                    <p>Donate via mobile money for Ghana-based donors. Quick and easy.</p>
+                    <h3>Mobile money</h3>
+                    <p>Ghana-based donors can use mobile money—ask us for the active number.</p>
                 </div>
-                
+
                 <div class="mvv-card">
                     <div class="mvv-icon">
-                        <i class="fas fa-hands-helping"></i>
+                        <i class="fas fa-hands-helping" aria-hidden="true"></i>
                     </div>
                     <h3>Volunteer</h3>
-                    <p>Donate your time and skills. Every volunteer makes a difference.</p>
+                    <p>Donate your time at events, outreach, or skills-based support. <a href="contact.html">Get in touch</a>.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-about">
                     <div class="navbar-logo">
-                        <img src="logo/GL Logo.jpg" alt="Gamers Lounge Foundation Logo">
+                        <img src="logo/mainlogo_trans.jpeg" alt="Gamers Lounge Foundation logo" width="200" height="56">
                         <span>Gamers Lounge Foundation</span>
                     </div>
-                    <p>Gamers Lounge Foundation is dedicated to empowering communities through education, disaster relief, and charitable initiatives. Join us in making a difference.</p>
+                    <p>Using gaming and e-sports for social impact—community connection, wellbeing, and youth opportunity.</p>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/gamersloungefoundation/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="https://wa.me/447868157126" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-links">
-                    <h4>Quick Links</h4>
+                    <h4>Quick links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html">About us</a></li>
                         <li><a href="donate.html">Donate</a></li>
-                        <li><a href="impact.html">Impact</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-links">
-                    <h4>Our Initiatives</h4>
+                    <h4>Focus areas</h4>
                     <ul>
-                        <li><a href="about.html">Education</a></li>
-                        <li><a href="about.html">Disaster Relief</a></li>
-                        <li><a href="about.html">Healthcare</a></li>
-                        <li><a href="about.html">Community Development</a></li>
+                        <li><a href="about.html">Mission &amp; vision</a></li>
+                        <li><a href="about.html">Gaming for good</a></li>
+                        <li><a href="about.html">Community &amp; wellbeing</a></li>
+                        <li><a href="about.html">Youth &amp; digital inclusion</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-links">
-                    <h4>Contact Info</h4>
+                    <h4>Contact</h4>
                     <ul>
                         <li><a href="tel:+233557276978">+233 557276978</a></li>
                         <li><a href="mailto:gamersloungefoundation@gmail.com">gamersloungefoundation@gmail.com</a></li>
@@ -231,10 +212,10 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2026 Gamers Lounge Foundation. All rights reserved.</p>
-                <p>Registered Charity Organization</p>
+                <p>Registered charity organisation</p>
                 <p class="footer-legal">
                     <a href="privacy.html">Privacy Policy</a>
                     <span class="footer-legal-sep" aria-hidden="true">·</span>
@@ -246,58 +227,42 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/447868157126?text=Hello%20GLF%2C%20I%27d%20like%20to%20make%20a%20donation." 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <script src="js/script.js"></script>
-    
-    <!-- Paystack Donation Script -->
     <script>
-        // Donation amount state
         let selectedAmount = 200;
-        
-        // Amount button click handlers
-        document.querySelectorAll('.amount-btn').forEach(btn => {
+
+        document.querySelectorAll('.amount-btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
-                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.amount-btn').forEach(function(b) { b.classList.remove('active'); });
                 this.classList.add('active');
-                selectedAmount = parseInt(this.dataset.amount);
+                selectedAmount = parseInt(this.dataset.amount, 10);
                 document.getElementById('customAmount').value = '';
             });
         });
-        
-        // Custom amount input handler
+
         document.getElementById('customAmount').addEventListener('input', function() {
             if (this.value) {
-                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
-                selectedAmount = parseInt(this.value) || 0;
+                document.querySelectorAll('.amount-btn').forEach(function(b) { b.classList.remove('active'); });
+                selectedAmount = parseFloat(this.value) || 0;
             }
         });
-        
-        // Form submission with Paystack
+
         document.getElementById('donationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const firstName = document.getElementById('firstName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            
+
+            var firstName = document.getElementById('firstName').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+
             if (selectedAmount < 1) {
                 alert('Please enter a valid donation amount.');
                 return;
             }
-            
-            // Paystack payment initialization
-            const paystack = PaystackPop.setup({
-                key: 'pk_live_fb0018e985ae2fbf1765806edbf758d73a0db930', // Live Paystack public key
+
+            var paystack = PaystackPop.setup({
+                key: 'pk_live_fb0018e985ae2fbf1765806edbf758d73a0db930',
                 email: email,
-                amount: selectedAmount * 100, // Paystack expects amount in pesewas for GHS
+                amount: Math.round(selectedAmount * 100),
                 currency: 'GHS',
                 ref: 'GLF-' + Math.random().toString(36).slice(2, 11),
                 metadata: {
@@ -305,17 +270,12 @@
                     phone: phone
                 },
                 callback: function(response) {
-                    // Payment successful
                     alert('Thank you for your donation! Transaction ref: ' + response.reference);
-                    // Here you would typically send the payment confirmation to your server
-                    window.location.href = 'impact.html?donation=success';
+                    window.location.href = 'index.html?donation=success';
                 },
-                onClose: function() {
-                    // Payment modal closed
-                    console.log('Payment modal closed');
-                }
+                onClose: function() {}
             });
-            
+
             paystack.openIframe();
         });
     </script>
