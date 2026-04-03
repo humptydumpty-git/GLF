@@ -62,14 +62,15 @@
     <section class="hero-video-section" aria-label="Welcome video">
         <div class="hero-video-inner">
             <video class="hero-video-el"
+                src="Asset/hpv-hero.mp4"
                 autoplay
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="auto"
+                poster="Asset/The GLF Team/glffounder.jpg"
                 aria-label="Gamers Lounge Foundation welcome video">
-                <source src="Asset/Home Page Video/HPV.mp4" type="video/mp4">
-                Your browser does not support embedded video. Use <code>Asset/Home Page Video/HPV.mp4</code>
+                Your browser does not support HTML5 video.
             </video>
             <div class="hero-video-scrim" aria-hidden="true"></div>
             <div class="hero-video-cta">
@@ -276,6 +277,9 @@
                 v.defaultMuted = true;
                 v.muted = true;
                 v.setAttribute('muted', '');
+                v.addEventListener('error', function () {
+                    console.warn('Hero video failed to load. Serve the site over http(s) (e.g. Live Server) and check Asset/hpv-hero.mp4 exists.');
+                });
                 var p = v.play();
                 if (p && typeof p.catch === 'function') {
                     p.catch(function () {
