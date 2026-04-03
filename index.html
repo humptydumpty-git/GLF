@@ -66,10 +66,10 @@
                 muted
                 loop
                 playsinline
-                preload="auto"
+                preload="metadata"
                 aria-label="Gamers Lounge Foundation welcome video">
-                <source src="Asset/Home Page Video/Home Page video.mp4" type="video/mp4">
-                Your browser does not support embedded video. The file is in Asset/Home Page Video/Home Page video.mp4
+                <source src="Asset/Home Page Video/HPV.mp4" type="video/mp4">
+                Your browser does not support embedded video. Use <code>Asset/Home Page Video/HPV.mp4</code>
             </video>
             <div class="hero-video-scrim" aria-hidden="true"></div>
             <div class="hero-video-cta">
@@ -273,10 +273,15 @@
         (function () {
             var v = document.querySelector('.hero-video-el');
             if (v) {
+                v.defaultMuted = true;
                 v.muted = true;
+                v.setAttribute('muted', '');
                 var p = v.play();
                 if (p && typeof p.catch === 'function') {
-                    p.catch(function () {});
+                    p.catch(function () {
+                        v.muted = true;
+                        v.play().catch(function () {});
+                    });
                 }
             }
         })();
