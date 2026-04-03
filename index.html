@@ -70,14 +70,14 @@
                 preload="auto"
                 poster="Asset/The GLF Team/glffounder.jpg"
                 aria-label="Gamers Lounge Foundation welcome video">
-                <source src="Asset/hpv-hero.mp4" type="video/mp4">
-                <a class="hero-video-download" href="Asset/hpv-hero.mp4">Open or download the welcome video (MP4)</a>
+                <source src="Asset/hpv-hero/hpv-hero.mp4" type="video/mp4">
+                <a class="hero-video-download" href="Asset/hpv-hero/hpv-hero.mp4">Open or download the welcome video (MP4)</a>
             </video>
             <div class="hero-video-fallback" id="heroVideoFallback" hidden>
                 <img src="Asset/The GLF Team/glffounder.jpg" alt="" width="1920" height="1080" fetchpriority="high">
                 <div class="hero-video-fallback__banner">
                     <p>Video playback isn’t available in this browser.</p>
-                    <a class="btn btn-primary" href="Asset/hpv-hero.mp4" target="_blank" rel="noopener">Watch or download MP4</a>
+                    <a class="btn btn-primary" href="Asset/hpv-hero/hpv-hero.mp4" target="_blank" rel="noopener">Watch or download MP4</a>
                 </div>
             </div>
             <div class="hero-video-scrim" id="heroVideoScrim" aria-hidden="true"></div>
@@ -312,23 +312,29 @@
             v.setAttribute('muted', '');
 
             v.addEventListener('error', function () {
-                console.warn('Hero video failed to load. Use http(s) hosting and ensure Asset/hpv-hero.mp4 exists. Optional: add Asset/hpv-hero.webm for a second format.');
+                console.warn('Hero video failed to load. Serve over http(s) and check Asset/hpv-hero/hpv-hero.mp4');
                 showFallback();
             });
 
-            var p = v.play();
-            if (p && typeof p.catch === 'function') {
-                p.catch(function () {
-                    v.muted = true;
-                    v.play().catch(function () {
-                        showFallback();
-                    });
-                });
+            function tryPlay() {
+                v.defaultMuted = true;
+                v.muted = true;
+                var p = v.play();
+                if (p && typeof p.catch === 'function') {
+                    p.catch(function () {});
+                }
             }
+
+            tryPlay();
+            v.addEventListener('loadeddata', tryPlay);
+            v.addEventListener('canplay', function onCanPlay() {
+                v.removeEventListener('canplay', onCanPlay);
+                tryPlay();
+            });
         })();
     </script>
     <noscript>
-        <p class="noscript-hero-hint">JavaScript is off — <a href="Asset/hpv-hero.mp4">open the welcome video (MP4)</a> directly.</p>
+        <p class="noscript-hero-hint">JavaScript is off — <a href="Asset/hpv-hero/hpv-hero.mp4">open the welcome video (MP4)</a> directly.</p>
     </noscript>
 </body>
 </html>
